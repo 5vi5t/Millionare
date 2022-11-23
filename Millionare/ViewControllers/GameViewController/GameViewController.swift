@@ -14,15 +14,27 @@ class GameViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private let tableView = UITableView()
-
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.backgroundColor = .white
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setupView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.sizeHeaderToFit()
+        tableView.sizeFooterToFit()
     }
     
     // MARK: - Functions
@@ -31,21 +43,30 @@ class GameViewController: UIViewController {
     // MARK: - Private functions
     
     private func setupView() {
-        view.backgroundColor = .white
         view.addSubview(tableView)
-        tableView.frame = view.bounds
-        tableView.backgroundColor = .white
+        view.backgroundColor = .white
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        tableView.register(AnswerCell.self, forCellReuseIdentifier: "AnswerCell")
+        let headerView = QuestionView(text: "Вопрос")
+        let footerView = QuestionView(text: "Подсказки")
+        tableView.tableHeaderView = headerView
+        tableView.tableFooterView = footerView
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
