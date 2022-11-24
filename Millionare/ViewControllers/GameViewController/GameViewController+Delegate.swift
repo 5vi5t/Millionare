@@ -8,6 +8,9 @@
 import UIKit
 
 extension GameViewController: UITableViewDelegate {
+    
+    // MARK: - UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? AnswerCell else { return }
         if cell.correctAnswer,
@@ -18,6 +21,8 @@ extension GameViewController: UITableViewDelegate {
             showResult()
         }
     }
+    
+    // MARK: - Functions
     
     func showResult() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
