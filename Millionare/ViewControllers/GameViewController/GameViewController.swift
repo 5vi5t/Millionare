@@ -11,15 +11,26 @@ class GameViewController: UIViewController {
     
     // MARK: - Properties
     
+    var indexQuestion = 0
     
     // MARK: - Private properties
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.backgroundColor = .white
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(AnswerCell.self, forCellReuseIdentifier: "AnswerCell")
+        tableView.register(QuestionView.self, forHeaderFooterViewReuseIdentifier: QuestionView.identifier)
+        tableView.tableHeaderView = headerView
         return tableView
+    }()
+    private lazy var headerView: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.text = "Кто хочет стать iOS - разработчиком)"
+        return label
     }()
     
     // MARK: - Life cycle
@@ -33,8 +44,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.sizeHeaderToFit()
-        tableView.sizeFooterToFit()
+        tableView.sizeHeaderToFit(insets: 30)
     }
     
     // MARK: - Functions
@@ -43,19 +53,15 @@ class GameViewController: UIViewController {
     // MARK: - Private functions
     
     private func setupView() {
-        view.addSubview(tableView)
         view.backgroundColor = .white
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        tableView.register(AnswerCell.self, forCellReuseIdentifier: "AnswerCell")
-        let headerView = QuestionView(text: "Вопрос")
-        let footerView = QuestionView(text: "Подсказки")
-        tableView.tableHeaderView = headerView
-        tableView.tableFooterView = footerView
     }
     
     

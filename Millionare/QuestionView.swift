@@ -7,7 +7,11 @@
 
 import UIKit
 
-class QuestionView: UIView {
+class QuestionView: UITableViewHeaderFooterView {
+    
+    // MARK: - Static properties
+    
+    static let identifier = String(describing: QuestionView.self)
     
     // MARK: - Properties
     
@@ -26,8 +30,8 @@ class QuestionView: UIView {
     
     // MARK: - Construction
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setupView()
     }
     
@@ -35,14 +39,15 @@ class QuestionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(text: String) {
-        self.init(frame: .zero)
+    // MARK: - Functions
+    
+    func setQuestionLabel(text: String) {
         questionLabel.text = text
     }
     
-    // MARK: - Functions
+    // MARK: - Private functions
     
-    func setupView() {
+    private func setupView() {
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(questionLabel)
         let questionLabelTrailingConstraint = questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets)

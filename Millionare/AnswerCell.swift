@@ -9,20 +9,23 @@ import UIKit
 
 class AnswerCell: UITableViewCell {
     
-    // MARK: - Properties
+    //MARK: - Static properties
     
-    let horizontalInset: CGFloat = 18
-    let verticalInset: CGFloat = 8
+    static let horizontalInset: CGFloat = 18
+    static let verticalInset: CGFloat = 8
     
     // MARK: - Private properties
     
-    private lazy var answerButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Ответ", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
-        return button
+    private lazy var answerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.backgroundColor = .blue
+        return label
     }()
+    
+    private(set) var correctAnswer = false
     
     // MARK: - Construction
     
@@ -35,30 +38,40 @@ class AnswerCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Functions
+    
+    func setAnswerLabel(text: String) {
+        answerLabel.text = text
+    }
+    
+    func setCorrectAnswer(isCorrect: CorrectAnswer) {
+        switch isCorrect {
+        case .correct:
+            correctAnswer = true
+        case .incorrect:
+            correctAnswer = false
+        }
+    }
+    
     // MARK: - Private functions
     
     private func setupView() {
-        contentView.addSubview(answerButton)
-        answerButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(answerLabel)
+        answerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            answerButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalInset),
-            answerButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalInset),
-            answerButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: horizontalInset),
-            answerButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -horizontalInset)
+            answerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AnswerCell.verticalInset),
+            answerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -AnswerCell.verticalInset),
+            answerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AnswerCell.horizontalInset),
+            answerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -AnswerCell.horizontalInset)
         ])
     }
     
     // MARK: - UITableViewCell
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        answerLabel.text = ""
+        correctAnswer = false
     }
     
 }
