@@ -19,9 +19,16 @@ final class Game {
         }
         return "\(correctAnswers * 100 / totalQuestions)%"
     }
-    private(set) var results = [String]()
+    private(set) var results: [String] {
+        didSet {
+            resultsCaretaker.save(results: self.results)
+        }
+    }
+    private let resultsCaretaker = ResultsCaretaker()
     
-    private init() {}
+    private init() {
+        self.results = resultsCaretaker.loadResults()
+    }
     
     func save() {
         results.append(result)

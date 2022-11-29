@@ -24,6 +24,7 @@
 		A4CD37DF29366A4800DC289E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37DE29366A4800DC289E /* ResultViewController.swift */; };
 		A4CD37E429366B3400DC289E /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37E329366B3400DC289E /* ResultCell.swift */; };
 		A4CD37E629366C0800DC289E /* ResultViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37E529366C0800DC289E /* ResultViewController+DataSource.swift */; };
+		A4CD37EA2936848500DC289E /* ResultsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37E92936848500DC289E /* ResultsCaretaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A4CD37DE29366A4800DC289E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A4CD37E329366B3400DC289E /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		A4CD37E529366C0800DC289E /* ResultViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultViewController+DataSource.swift"; sourceTree = "<group>"; };
+		A4CD37E92936848500DC289E /* ResultsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCaretaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				A4CD37C5292EA4DF00DC289E /* Ext+TableView.swift */,
 				A4CD37D92936414100DC289E /* Game.swift */,
+				A4CD37E92936848500DC289E /* ResultsCaretaker.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				A4CD37A9292D626D00DC289E /* MainMenuViewController.swift in Sources */,
 				A4CD37A5292D626D00DC289E /* AppDelegate.swift in Sources */,
 				A4CD37CE292FA95F00DC289E /* GameViewController+Delegate.swift in Sources */,
+				A4CD37EA2936848500DC289E /* ResultsCaretaker.swift in Sources */,
 				A4CD37CA292EC5C900DC289E /* Question.swift in Sources */,
 				A4CD37C4292E4C9000DC289E /* QuestionView.swift in Sources */,
 				A4CD37DA2936414100DC289E /* Game.swift in Sources */,
