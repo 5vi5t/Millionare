@@ -11,6 +11,7 @@ class MainMenuViewController: UIViewController {
 
     // MARK: - Properties
     
+    var gameSession: GameSession?
     
     // MARK: - Private properties
     
@@ -25,7 +26,7 @@ class MainMenuViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Играть", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .gray
+        button.backgroundColor = .white
         button.addTarget(self,
                          action: #selector(playButtonTap),
                          for: .touchUpInside)
@@ -35,7 +36,7 @@ class MainMenuViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Результаты", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .gray
+        button.backgroundColor = .white
         button.addTarget(self,
                          action: #selector(resultButtonTap),
                          for: .touchUpInside)
@@ -74,12 +75,22 @@ class MainMenuViewController: UIViewController {
     
     @objc private func playButtonTap() {
         let gameVC = GameViewController()
+        gameSession = GameSession()
+        Game.shared.gameSession = gameSession
+        gameVC.delegate = self
         gameVC.modalPresentationStyle = .fullScreen
         self.present(gameVC, animated: true)
     }
     
     @objc private func resultButtonTap() {
-        
+        let resultVC = ResultViewController()
+        self.present(resultVC, animated: true)
+    }
+}
+
+extension MainMenuViewController: GameViewControllerDelegate {
+    func save(result: Int) {
+        gameSession?.correctAnswers = result
     }
 }
 

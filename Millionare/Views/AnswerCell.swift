@@ -11,6 +11,7 @@ class AnswerCell: UITableViewCell {
     
     //MARK: - Static properties
     
+    static let identifier = String(describing: AnswerCell.self)
     static let horizontalInset: CGFloat = 18
     static let verticalInset: CGFloat = 8
     

@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol GameViewControllerDelegate: AnyObject {
+    func save(result: Int)
+}
+
 class GameViewController: UIViewController {
     
     // MARK: - Properties
     
     var indexQuestion = 0
+    var gameSession: GameSession?
+    weak var delegate: GameViewControllerDelegate?
     
     // MARK: - Private properties
     
@@ -20,7 +26,7 @@ class GameViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
-        tableView.register(AnswerCell.self, forCellReuseIdentifier: "AnswerCell")
+        tableView.register(AnswerCell.self, forCellReuseIdentifier: AnswerCell.identifier)
         tableView.register(QuestionView.self, forHeaderFooterViewReuseIdentifier: QuestionView.identifier)
         tableView.tableHeaderView = headerView
         return tableView
@@ -38,7 +44,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         setupView()
     }
     
@@ -63,16 +68,4 @@ class GameViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
