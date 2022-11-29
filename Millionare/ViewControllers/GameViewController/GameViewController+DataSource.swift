@@ -16,7 +16,7 @@ extension GameViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell", for: indexPath) as? AnswerCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerCell.identifier, for: indexPath) as? AnswerCell else { return UITableViewCell() }
         let question = Question.questions[indexQuestion]
         cell.setAnswerLabel(text: question.answers[indexPath.row].answer)
         cell.setCorrectAnswer(isCorrect: question.answers[indexPath.row].isCorrect)

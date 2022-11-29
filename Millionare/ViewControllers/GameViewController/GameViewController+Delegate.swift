@@ -18,15 +18,17 @@ extension GameViewController: UITableViewDelegate {
             indexQuestion += 1
             tableView.reloadData()
         } else {
-            showResult()
+            delegate?.save(result: indexQuestion)
+            Game.shared.save()
+            showResult(result: indexQuestion)
         }
     }
     
     // MARK: - Functions
     
-    func showResult() {
+    func showResult(result: Int) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alert.title = "Отвечено на \(indexQuestion) вопросов"
+        alert.title = "Отвечено на \(result) вопросов"
         let action = UIAlertAction(title: "Вернутся на главную", style: .default) { [weak self] _ in
             self?.dismiss(animated: true) {}
         }
