@@ -9,8 +9,16 @@ import Foundation
 
 final class Game {
     
+    // MARK: - Static properties
+    
     static let shared = Game()
+    
+    // MARK: - Properties
+    
     var gameSession: GameSession?
+    
+    // MARK: - Private properties
+    
     private var result: String {
         guard let correctAnswers = gameSession?.correctAnswers,
               let totalQuestions = gameSession?.totalQuestions
@@ -26,9 +34,13 @@ final class Game {
     }
     private let resultsCaretaker = ResultsCaretaker()
     
+    // MARK: - Construction
+    
     private init() {
         self.results = resultsCaretaker.loadResults()
     }
+    
+    // MARK: - Functions
     
     func save() {
         results.append(result)

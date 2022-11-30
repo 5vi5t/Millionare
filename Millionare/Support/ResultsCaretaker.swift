@@ -9,9 +9,13 @@ import Foundation
 
 class ResultsCaretaker {
     
+    // MARK: - Private properties
+    
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     private let key = "results"
+    
+    // MARK: - Functions
     
     func save(results: [String]) {
         do {

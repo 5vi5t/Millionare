@@ -9,7 +9,7 @@ import UIKit
 
 class ResultCell: UITableViewCell {
     
-    //MARK: - Static properties
+    // MARK: - Static properties
     
     static let identifier = String(describing: ResultCell.self)
 }
