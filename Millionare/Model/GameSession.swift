@@ -8,6 +8,9 @@
 import Foundation
 
 class GameSession {
+    
+    // MARK: - Properties
+    
     var correctAnswers: Int?
     var totalQuestions = Question.questions.count
 }

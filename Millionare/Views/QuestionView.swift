@@ -17,7 +17,7 @@ class QuestionView: UITableViewHeaderFooterView {
     
     let insets: CGFloat = 8
     
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()

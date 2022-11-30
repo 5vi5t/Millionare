@@ -51,10 +51,10 @@ class MainMenuViewController: UIViewController {
         setupView()
     }
 
-    //MARK: - Functions
+    // MARK: - Functions
     
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     
     private func setupView() {
         view.backgroundColor = .white
@@ -87,6 +87,8 @@ class MainMenuViewController: UIViewController {
         self.present(resultVC, animated: true)
     }
 }
+
+    // MARK: - GameViewControllerDelegate
 
 extension MainMenuViewController: GameViewControllerDelegate {
     func save(result: Int) {

@@ -9,7 +9,7 @@ import UIKit
 
 class AnswerCell: UITableViewCell {
     
-    //MARK: - Static properties
+    // MARK: - Static properties
     
     static let identifier = String(describing: AnswerCell.self)
     static let horizontalInset: CGFloat = 18
