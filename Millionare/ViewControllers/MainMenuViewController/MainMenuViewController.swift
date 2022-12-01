@@ -42,6 +42,15 @@ class MainMenuViewController: UIViewController {
                          for: .touchUpInside)
         return button
     }()
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "wrench.and.screwdriver"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self,
+                         action: #selector(settingsButtonTap),
+                         for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Life cycle
     
@@ -71,6 +80,16 @@ class MainMenuViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview($0)
         }
+        
+        view.addSubview(settingsButton)
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            settingsButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
+            settingsButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+            settingsButton.heightAnchor.constraint(equalToConstant: 50),
+            settingsButton.widthAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
     @objc private func playButtonTap() {
@@ -85,6 +104,11 @@ class MainMenuViewController: UIViewController {
     @objc private func resultButtonTap() {
         let resultVC = ResultViewController()
         self.present(resultVC, animated: true)
+    }
+    
+    @objc private func settingsButtonTap() {
+        let settingsVC = SettingsViewController()
+        self.present(settingsVC, animated: true)
     }
 }
 
