@@ -16,6 +16,7 @@ final class Game {
     // MARK: - Properties
     
     var gameSession: GameSession?
+    var orderQuestions: OrderQuestions = .serial
     
     // MARK: - Private properties
     

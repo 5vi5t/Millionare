@@ -14,22 +14,7 @@ class SettingsOrderQuestionsCell: UITableViewCell {
     static let identifier = String(describing: AnswerCell.self)
     static let insets: CGFloat = 8
     
-    // MARK: - Properties
-    
-    var orderQuestions: OrderQuestions = .serial
-    
     // MARK: - Private properties
-    
-    private var selectedOrderQuestions: OrderQuestions {
-        switch orderQuestionsControl.selectedSegmentIndex {
-        case 0:
-            return .serial
-        case 1:
-            return .random
-        default:
-            return .serial
-        }
-    }
     
     private lazy var settingsLabel: UILabel = {
         let label = UILabel()
@@ -49,6 +34,15 @@ class SettingsOrderQuestionsCell: UITableViewCell {
             items.append(item)
         }
         let control = UISegmentedControl(items: items)
+        control.selectedSegmentIndex = {
+            switch Game.shared.orderQuestions {
+            case .serial:
+                return 0
+            case .random:
+                return 1
+            }
+        }()
+        control.addTarget(self, action: #selector(orderQuestionsControlTap), for: .valueChanged)
         return control
     }()
     
@@ -82,5 +76,16 @@ class SettingsOrderQuestionsCell: UITableViewCell {
             orderQuestionsControl.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.centerXAnchor, constant: SettingsOrderQuestionsCell.insets),
             orderQuestionsControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SettingsOrderQuestionsCell.insets)
         ])
+    }
+    
+    @objc private func orderQuestionsControlTap(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            Game.shared.orderQuestions = .serial
+        case 1:
+            Game.shared.orderQuestions = .random
+        default:
+            Game.shared.orderQuestions = .serial
+        }
     }
 }

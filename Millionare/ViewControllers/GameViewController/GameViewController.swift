@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     var indexQuestion = 0
     var gameSession: GameSession?
     weak var delegate: GameViewControllerDelegate?
+    var questions = [Question]()
     
     // MARK: - Private properties
     
@@ -39,11 +40,20 @@ class GameViewController: UIViewController {
         return label
     }()
     
+    private lazy var orderQuestionsStrategy: OrderQuestionsStrategy = {
+        switch Game.shared.orderQuestions {
+        case .serial:
+            return SerialOrderQuestionsStrategy()
+        case .random:
+            return RandomOrderQuestionsStrategy()
+        }
+    }()
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        questions = orderQuestionsStrategy.setOrder(questions: Question.questions)
         setupView()
     }
     
@@ -51,9 +61,6 @@ class GameViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.sizeHeaderToFit(insets: 30)
     }
-    
-    // MARK: - Functions
-    
     
     // MARK: - Private functions
     
