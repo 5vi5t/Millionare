@@ -20,18 +20,17 @@ final class Game {
     
     // MARK: - Private properties
     
-    private var result: String {
-        guard let correctAnswers = gameSession?.correctAnswers,
-              let totalQuestions = gameSession?.totalQuestions
-        else {
-            return ""
-        }
-        return "\(correctAnswers * 100 / totalQuestions)%"
-    }
     private(set) var results: [String] {
         didSet {
             resultsCaretaker.save(results: self.results)
         }
+    }
+    var result: String {
+        guard let correctAnswers = gameSession?.correctAnswers,
+              let totalQuestions = gameSession?.totalQuestions,
+              totalQuestions != 0
+        else { return "" }
+        return "\(correctAnswers * 100 / totalQuestions)%"
     }
     private let resultsCaretaker = ResultsCaretaker()
     
@@ -45,7 +44,6 @@ final class Game {
     
     func save() {
         results.append(result)
-        gameSession = nil
+        
     }
-    
 }

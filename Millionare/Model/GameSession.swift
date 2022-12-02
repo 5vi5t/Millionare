@@ -12,5 +12,5 @@ class GameSession {
     // MARK: - Properties
     
     var correctAnswers: Int?
-    var totalQuestions = Question.questions.count
+    let totalQuestions = Question.questions.count
 }

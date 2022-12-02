@@ -11,7 +11,11 @@ class MainMenuViewController: UIViewController {
 
     // MARK: - Properties
     
-    var gameSession: GameSession?
+    var gameSession: GameSession? {
+        didSet {
+            Game.shared.gameSession = gameSession
+        }
+    }
     
     // MARK: - Private properties
     
@@ -95,7 +99,6 @@ class MainMenuViewController: UIViewController {
     @objc private func playButtonTap() {
         let gameVC = GameViewController()
         gameSession = GameSession()
-        Game.shared.gameSession = gameSession
         gameVC.delegate = self
         gameVC.modalPresentationStyle = .fullScreen
         self.present(gameVC, animated: true)
@@ -111,12 +114,3 @@ class MainMenuViewController: UIViewController {
         self.present(settingsVC, animated: true)
     }
 }
-
-    // MARK: - GameViewControllerDelegate
-
-extension MainMenuViewController: GameViewControllerDelegate {
-    func save(result: Int) {
-        gameSession?.correctAnswers = result
-    }
-}
-

@@ -32,6 +32,9 @@
 		A4CD37E429366B3400DC289E /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37E329366B3400DC289E /* ResultCell.swift */; };
 		A4CD37E629366C0800DC289E /* ResultViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37E529366C0800DC289E /* ResultViewController+DataSource.swift */; };
 		A4CD37EA2936848500DC289E /* ResultsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CD37E92936848500DC289E /* ResultsCaretaker.swift */; };
+		A4FE8780293A0E8C006AA496 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FE877F293A0E8C006AA496 /* Observable.swift */; };
+		A4FE8782293A0FDE006AA496 /* HintsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FE8781293A0FDE006AA496 /* HintsView.swift */; };
+		A4FE8784293A1281006AA496 /* MainViewControoller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FE8783293A1281006AA496 /* MainViewControoller+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		A4CD37E329366B3400DC289E /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		A4CD37E529366C0800DC289E /* ResultViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResultViewController+DataSource.swift"; sourceTree = "<group>"; };
 		A4CD37E92936848500DC289E /* ResultsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCaretaker.swift; sourceTree = "<group>"; };
+		A4FE877F293A0E8C006AA496 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		A4FE8781293A0FDE006AA496 /* HintsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintsView.swift; sourceTree = "<group>"; };
+		A4FE8783293A1281006AA496 /* MainViewControoller+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewControoller+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				A4CD37A8292D626D00DC289E /* MainMenuViewController.swift */,
+				A4FE8783293A1281006AA496 /* MainViewControoller+Ext.swift */,
 			);
 			path = MainMenuViewController;
 			sourceTree = "<group>";
@@ -180,6 +187,7 @@
 				A4CD37C3292E4C9000DC289E /* QuestionView.swift */,
 				A4CD37E329366B3400DC289E /* ResultCell.swift */,
 				A4C456612938A15600295A09 /* SettingsOrderQuestionsCell.swift */,
+				A4FE8781293A0FDE006AA496 /* HintsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 		A4CD37E129366AC300DC289E /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				A4FE877F293A0E8C006AA496 /* Observable.swift */,
 				A4CD37C5292EA4DF00DC289E /* Ext+TableView.swift */,
 				A4CD37D92936414100DC289E /* Game.swift */,
 				A4CD37E92936848500DC289E /* ResultsCaretaker.swift */,
@@ -290,9 +299,12 @@
 				A4CD37A7292D626D00DC289E /* SceneDelegate.swift in Sources */,
 				A4CD37C6292EA4DF00DC289E /* Ext+TableView.swift in Sources */,
 				A4C456642938C35F00295A09 /* SettingsViewController+DataSource.swift in Sources */,
+				A4FE8780293A0E8C006AA496 /* Observable.swift in Sources */,
+				A4FE8782293A0FDE006AA496 /* HintsView.swift in Sources */,
 				A4CD37E629366C0800DC289E /* ResultViewController+DataSource.swift in Sources */,
 				A4CD37C0292E485100DC289E /* AnswerCell.swift in Sources */,
 				A4C456622938A15600295A09 /* SettingsOrderQuestionsCell.swift in Sources */,
+				A4FE8784293A1281006AA496 /* MainViewControoller+Ext.swift in Sources */,
 				A4CD37DC2936417900DC289E /* GameSession.swift in Sources */,
 				A4CD37E429366B3400DC289E /* ResultCell.swift in Sources */,
 				A4CD37C2292E4A2A00DC289E /* GameViewController+DataSource.swift in Sources */,

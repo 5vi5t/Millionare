@@ -16,7 +16,15 @@ class ResultViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ResultCell.self, forCellReuseIdentifier: ResultCell.identifier)
         tableView.backgroundColor = .white
+        tableView.tableHeaderView = headerView
         return tableView
+    }()
+    private lazy var headerView: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.text = "Результаты"
+        return label
     }()
     
     // MARK: - Life cycle
@@ -24,6 +32,11 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.sizeHeaderToFit(insets: 30)
     }
     
     // MARK: - Private functions

@@ -13,20 +13,21 @@ extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? AnswerCell else { return }
-        if cell.correctAnswer,
-           indexQuestion < Question.questions.count - 1 {
+        if cell.correctAnswer {
             indexQuestion += 1
-            tableView.reloadData()
+            if indexQuestion < Question.questions.count {
+                tableView.reloadData()
+            } else {
+                finishGame()
+            }
         } else {
-            delegate?.save(result: indexQuestion)
-            Game.shared.save()
-            showResult(result: indexQuestion)
+            finishGame()
         }
     }
     
     // MARK: - Functions
     
-    func showResult(result: Int) {
+    func showAlertWith(result: String) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         alert.title = "Отвечено на \(result) вопросов"
         let action = UIAlertAction(title: "Вернутся на главную", style: .default) { [weak self] _ in
@@ -34,5 +35,12 @@ extension GameViewController: UITableViewDelegate {
         }
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    func finishGame() {
+        delegate?.save(result: indexQuestion)
+        Game.shared.save()
+        showAlertWith(result: Game.shared.result)
+        delegate?.removeGameSession()
     }
 }

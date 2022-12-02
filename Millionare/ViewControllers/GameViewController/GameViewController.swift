@@ -9,6 +9,7 @@ import UIKit
 
 protocol GameViewControllerDelegate: AnyObject {
     func save(result: Int)
+    func removeGameSession()
 }
 
 class GameViewController: UIViewController {
@@ -16,7 +17,6 @@ class GameViewController: UIViewController {
     // MARK: - Properties
     
     var indexQuestion = 0
-    var gameSession: GameSession?
     weak var delegate: GameViewControllerDelegate?
     var questions = [Question]()
     
@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.register(AnswerCell.self, forCellReuseIdentifier: AnswerCell.identifier)
         tableView.register(QuestionView.self, forHeaderFooterViewReuseIdentifier: QuestionView.identifier)
+        tableView.register(HintsView.self, forHeaderFooterViewReuseIdentifier: HintsView.identifier)
         tableView.tableHeaderView = headerView
         return tableView
     }()
