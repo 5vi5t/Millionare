@@ -11,6 +11,12 @@ class GameSession {
     
     // MARK: - Properties
     
-    var correctAnswers: Int?
-    let totalQuestions = Question.questions.count
+    var questionNumber = 0
+    var correctAnswers = 0
+    var totalQuestions = 0
+    var result: String {
+        guard totalQuestions != 0 else { return "0 %" }
+        return "\(correctAnswers * 100 / totalQuestions) %"
+    }
+    
 }

@@ -22,7 +22,6 @@ class SettingsOrderQuestionsCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .black
         label.backgroundColor = .white
-        label.font = UIFont.systemFont(ofSize: 17)
         label.text = "Порядок вопросов"
         return label
     }()
@@ -64,7 +63,8 @@ class SettingsOrderQuestionsCell: UITableViewCell {
         contentView.addSubview(settingsLabel)
         settingsLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            settingsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            settingsLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: SettingsOrderQuestionsCell.insets),
+            settingsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -SettingsOrderQuestionsCell.insets),
             settingsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: SettingsOrderQuestionsCell.insets),
             settingsLabel.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.centerXAnchor, constant: -SettingsOrderQuestionsCell.insets)
         ])
@@ -72,7 +72,8 @@ class SettingsOrderQuestionsCell: UITableViewCell {
         contentView.addSubview(orderQuestionsControl)
         orderQuestionsControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            orderQuestionsControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            orderQuestionsControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: SettingsOrderQuestionsCell.insets),
+            orderQuestionsControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -SettingsOrderQuestionsCell.insets),
             orderQuestionsControl.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.centerXAnchor, constant: SettingsOrderQuestionsCell.insets),
             orderQuestionsControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SettingsOrderQuestionsCell.insets)
         ])

@@ -22,15 +22,8 @@ final class Game {
     
     private(set) var results: [String] {
         didSet {
-            resultsCaretaker.save(results: self.results)
+            resultsCaretaker.save(results: results)
         }
-    }
-    var result: String {
-        guard let correctAnswers = gameSession?.correctAnswers,
-              let totalQuestions = gameSession?.totalQuestions,
-              totalQuestions != 0
-        else { return "" }
-        return "\(correctAnswers * 100 / totalQuestions)%"
     }
     private let resultsCaretaker = ResultsCaretaker()
     
@@ -43,7 +36,8 @@ final class Game {
     // MARK: - Functions
     
     func save() {
-        results.append(result)
-        
+        if let result = gameSession?.result {
+            results.append(result)
+        }
     }
 }

@@ -8,17 +8,27 @@
 import UIKit
 
 protocol GameViewControllerDelegate: AnyObject {
-    func save(result: Int)
     func removeGameSession()
+    func send(totalQuestions number: Int)
+    func send(questionNumber number: Int)
+    func send(correctAnswers number: Int)
 }
 
 class GameViewController: UIViewController {
     
     // MARK: - Properties
     
-    var indexQuestion = 0
+    var indexQuestion = 0 {
+        didSet {
+            delegate?.send(questionNumber: indexQuestion + 1)
+        }
+    }
+    var questions: [Question] = [] {
+        didSet {
+            delegate?.send(totalQuestions: questions.count)
+        }
+    }
     weak var delegate: GameViewControllerDelegate?
-    var questions = [Question]()
     
     // MARK: - Private properties
     

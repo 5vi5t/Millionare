@@ -38,9 +38,10 @@ extension GameViewController: UITableViewDelegate {
     }
     
     func finishGame() {
-        delegate?.save(result: indexQuestion)
+        delegate?.send(correctAnswers: indexQuestion)
         Game.shared.save()
-        showAlertWith(result: Game.shared.result)
+        // TODO: показывать результат из GameSession
+        showAlertWith(result: "процент ответов")
         delegate?.removeGameSession()
     }
 }
