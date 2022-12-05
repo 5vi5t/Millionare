@@ -21,6 +21,7 @@ class GameViewController: UIViewController {
     var indexQuestion = 0 {
         didSet {
             delegate?.send(questionNumber: indexQuestion + 1)
+            delegate?.send(correctAnswers: indexQuestion)
         }
     }
     var questions: [Question] = [] {
@@ -29,6 +30,14 @@ class GameViewController: UIViewController {
         }
     }
     weak var delegate: GameViewControllerDelegate?
+    var gameSession: GameSession?
+    var questionNumber = 1
+    var correctAnswers = 0
+    var totalQuestions = 0
+    var result: String {
+        guard totalQuestions != 0 else { return "0 %"}
+        return "\(correctAnswers * 100 / totalQuestions) %"
+    }
     
     // MARK: - Private properties
     
@@ -64,6 +73,14 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameSession?.questionNumber.addObserver(self, closure: { [weak self] (questionNumber, _) in
+            self?.questionNumber = questionNumber
+        })
+        gameSession?.correctAnswers.addObserver(self, closure: { [weak self] (correctAnswers, _) in
+            self?.correctAnswers = correctAnswers
+        })
+        gameSession?.totalQuestions.addObserver(self, closure: { [weak self] (totalQuestions, _) in            self?.totalQuestions = totalQuestions
+        })
         questions = orderQuestionsStrategy.setOrder(questions: Question.questions)
         setupView()
     }

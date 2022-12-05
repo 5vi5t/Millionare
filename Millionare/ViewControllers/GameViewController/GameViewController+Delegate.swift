@@ -27,9 +27,9 @@ extension GameViewController: UITableViewDelegate {
     
     // MARK: - Functions
     
-    func showAlertWith(result: String) {
+    func showAlertWith(questionNumber: Int, result: String) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alert.title = "Отвечено на \(result) вопросов"
+        alert.title = "Всего \(questionNumber) вопросов, \(result) правильных ответов"
         let action = UIAlertAction(title: "Вернутся на главную", style: .default) { [weak self] _ in
             self?.dismiss(animated: true) {}
         }
@@ -38,10 +38,8 @@ extension GameViewController: UITableViewDelegate {
     }
     
     func finishGame() {
-        delegate?.send(correctAnswers: indexQuestion)
         Game.shared.save()
-        // TODO: показывать результат из GameSession
-        showAlertWith(result: "процент ответов")
+        showAlertWith(questionNumber: questionNumber, result: result)
         delegate?.removeGameSession()
     }
 }

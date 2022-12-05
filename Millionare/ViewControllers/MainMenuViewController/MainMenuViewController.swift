@@ -100,6 +100,7 @@ class MainMenuViewController: UIViewController {
         let gameVC = GameViewController()
         gameSession = GameSession()
         gameVC.delegate = self
+        gameVC.gameSession = gameSession
         gameVC.modalPresentationStyle = .fullScreen
         self.present(gameVC, animated: true)
     }

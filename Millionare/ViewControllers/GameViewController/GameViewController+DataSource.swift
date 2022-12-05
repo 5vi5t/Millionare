@@ -30,8 +30,9 @@ extension GameViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-            guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HintsView.identifier) as? HintsView else { return nil }
-        footer.setHintsLabel(text: "Текущий вопрос \(indexQuestion + 1)")
-            return footer
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HintsView.identifier) as? HintsView else { return nil }
+        footer.setHintsLabel(text: "Текущий вопрос \(questionNumber), процент ответов \(result)")
+        
+        return footer
     }
 }

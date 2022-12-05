@@ -11,15 +11,15 @@ import UIKit
 
 extension MainMenuViewController: GameViewControllerDelegate {
     func send(totalQuestions number: Int) {
-        gameSession?.totalQuestions = number
+        gameSession?.totalQuestions.value = number
     }
     
     func send(questionNumber number: Int) {
-        gameSession?.questionNumber = number
+        gameSession?.questionNumber.value = number
     }
     
     func send(correctAnswers number: Int) {
-        gameSession?.correctAnswers = number
+        gameSession?.correctAnswers.value = number
     }
     
     func removeGameSession() {
