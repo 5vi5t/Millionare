@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(SettingsOrderQuestionsCell.self, forCellReuseIdentifier: SettingsOrderQuestionsCell.identifier)
         tableView.tableHeaderView = headerView
+        tableView.backgroundColor = .white
         return tableView
     }()
     private lazy var headerView: UILabel = {

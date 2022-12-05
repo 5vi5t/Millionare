@@ -11,6 +11,12 @@ class GameSession {
     
     // MARK: - Properties
     
-    var correctAnswers: Int?
-    var totalQuestions = Question.questions.count
+    var questionNumber = Observable<Int>(0)
+    var correctAnswers = Observable<Int>(0)
+    var totalQuestions = Observable<Int>(0)
+    var result: String {
+        guard totalQuestions.value != 0 else { return "0 %" }
+        return "\(correctAnswers.value * 100 / totalQuestions.value) %"
+    }
+    
 }
