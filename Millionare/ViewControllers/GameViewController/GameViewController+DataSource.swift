@@ -17,9 +17,8 @@ extension GameViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerCell.identifier, for: indexPath) as? AnswerCell else { return UITableViewCell() }
-        let question = questions[indexQuestion]
-        cell.setAnswerLabel(text: question.answers[indexPath.row].answer)
-        cell.setCorrectAnswer(isCorrect: question.answers[indexPath.row].isCorrect)
+        let answer = questions[indexQuestion].answers[indexPath.row]
+        cell.configure(answerLabelText: answer.answer, correctAnswer: answer.correctAnswer, hint: answer.hint)
         return cell
     }
     
@@ -31,8 +30,9 @@ extension GameViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HintsView.identifier) as? HintsView else { return nil }
-        footer.setHintsLabel(text: "Текущий вопрос \(questionNumber), процент ответов \(result)")
-        
+        let text = "Текущий вопрос \(questionNumber), процент ответов \(result)"
+        footer.configure(hintsLabelText: text)
+        footer.delegate = self
         return footer
     }
 }

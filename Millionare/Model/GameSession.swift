@@ -18,5 +18,8 @@ class GameSession {
         guard totalQuestions.value != 0 else { return "0 %" }
         return "\(correctAnswers.value * 100 / totalQuestions.value) %"
     }
+    var hintFiftyFifty = true
+    var hintCallFriend = true
+    var hintHallHelp = true
     
 }

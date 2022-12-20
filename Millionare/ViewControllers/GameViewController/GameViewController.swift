@@ -20,7 +20,11 @@ class GameViewController: UIViewController {
     
     var indexQuestion = 0 {
         didSet {
-            delegate?.send(questionNumber: indexQuestion + 1)
+            if indexQuestion < questions.count {
+                delegate?.send(questionNumber: indexQuestion + 1)
+            } else {
+                delegate?.send(questionNumber: indexQuestion)
+            }
             delegate?.send(correctAnswers: indexQuestion)
         }
     }
@@ -41,7 +45,7 @@ class GameViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private lazy var tableView: UITableView = {
+    private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
@@ -79,7 +83,8 @@ class GameViewController: UIViewController {
         gameSession?.correctAnswers.addObserver(self, closure: { [weak self] (correctAnswers, _) in
             self?.correctAnswers = correctAnswers
         })
-        gameSession?.totalQuestions.addObserver(self, closure: { [weak self] (totalQuestions, _) in            self?.totalQuestions = totalQuestions
+        gameSession?.totalQuestions.addObserver(self, closure: { [weak self] (totalQuestions, _) in
+            self?.totalQuestions = totalQuestions
         })
         questions = orderQuestionsStrategy.setOrder(questions: Question.questions)
         setupView()
