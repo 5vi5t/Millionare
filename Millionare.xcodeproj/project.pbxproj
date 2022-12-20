@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A404B0532950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B0522950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift */; };
 		A4BF904E2937B6A200EF76CA /* OrderQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF904D2937B6A200EF76CA /* OrderQuestions.swift */; };
 		A4C456602938A09000295A09 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C4565F2938A09000295A09 /* SettingsViewController.swift */; };
 		A4C456622938A15600295A09 /* SettingsOrderQuestionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C456612938A15600295A09 /* SettingsOrderQuestionsCell.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A404B0522950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+HintsViewDelegate.swift"; sourceTree = "<group>"; };
 		A4BF904D2937B6A200EF76CA /* OrderQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderQuestions.swift; sourceTree = "<group>"; };
 		A4C4565F2938A09000295A09 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A4C456612938A15600295A09 /* SettingsOrderQuestionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOrderQuestionsCell.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				A4CD37BA292E373700DC289E /* GameViewController.swift */,
 				A4CD37C1292E4A2A00DC289E /* GameViewController+DataSource.swift */,
 				A4CD37CD292FA95F00DC289E /* GameViewController+Delegate.swift */,
+				A404B0522950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift */,
 			);
 			path = GameViewController;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			files = (
 				A4CD37DF29366A4800DC289E /* ResultViewController.swift in Sources */,
 				A4BF904E2937B6A200EF76CA /* OrderQuestions.swift in Sources */,
+				A404B0532950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift in Sources */,
 				A4CD37BB292E373700DC289E /* GameViewController.swift in Sources */,
 				A4CD37A9292D626D00DC289E /* MainMenuViewController.swift in Sources */,
 				A4C4566829393A4400295A09 /* OrderQuestionsStrategy.swift in Sources */,

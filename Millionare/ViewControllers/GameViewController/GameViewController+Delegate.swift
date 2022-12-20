@@ -13,14 +13,15 @@ extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? AnswerCell else { return }
-        if cell.correctAnswer {
+        switch cell.correctAnswer {
+        case .correct:
             indexQuestion += 1
             if indexQuestion < Question.questions.count {
                 tableView.reloadData()
             } else {
                 finishGame()
             }
-        } else {
+        case .incorrect:
             finishGame()
         }
     }
