@@ -7,9 +7,18 @@
 
 import Foundation
 
-enum CorrectAnswer {
+enum AnswerType: CaseIterable, CustomStringConvertible {
     case correct
     case incorrect
+    
+    var description: String {
+        switch self {
+        case .correct:
+            return "Правильный"
+        case .incorrect:
+            return "Неправильный"
+        }
+    }
 }
 
 enum Hints: CaseIterable, CustomStringConvertible {
@@ -41,7 +50,7 @@ enum HintType {
 
 struct Answer {
     let answer: String
-    let correctAnswer: CorrectAnswer
+    let correctAnswer: AnswerType
     var hint: HintType = .none
 }
 
