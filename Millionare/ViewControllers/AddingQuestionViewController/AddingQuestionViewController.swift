@@ -90,12 +90,36 @@ class AddingQuestionViewController: UIViewController {
     
     @objc private func addQuestionButtonTap() {
         /*
-         1. из хедера получить вопрос
-         2. из ячеек получить ответы
-         3. проверить наличие вопроса и ответов
-         4. создать структуру из полученных данных
+         1. из хедера получить вопрос done
+         2. из ячеек получить ответы done
+         3. проверить наличие вопроса и ответов done
+         4. создать структуру из полученных данных done
+         5. показать юзеру предупреждение в случае отсутствия данных
          */
-        print("rere")
+        guard let question = (tableView.headerView(forSection: 0) as? AddingQuestionHeaderView)?.question,
+              !question.isEmpty else {
+            showAlertWith(title: "Нет вопроса!", message: nil)
+            return
+        }
+        var answers: [Answer] = []
+        var isAllowedAddQuestion = false
+        for row in 0 ..< numberAnswers {
+            if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AddingQuestionAnswerCell,
+               !cell.answer.isEmpty {
+                let answer = Answer(answer: cell.answer, correctAnswer: cell.answerType)
+                answers.append(answer)
+                isAllowedAddQuestion = true
+            } else {
+                showAlertWith(title: "Нет ответа \(row + 1)!", message: nil)
+                isAllowedAddQuestion = false
+                break
+            }
+        }
+        if isAllowedAddQuestion {
+            let newQuestion = Question(question: question, answers: answers)
+            Game.shared.save(question: newQuestion)
+            dismiss(animated: true)
+        }
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) {
@@ -106,11 +130,21 @@ class AddingQuestionViewController: UIViewController {
     @objc private func keyboardWillHide() {
         tableView.contentInset = .zero
     }
+    
+    func showAlertWith(title: String?, message: String?) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alert.title = title
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
 }
+
+// MARK: - AddingQuestionFooterView Delegate
 
 extension AddingQuestionViewController: AddingQuestionFooterViewDelegate {
     func addAnswer() {
         numberAnswers += 1
-        tableView.reloadData()
+        tableView.insertRows(at: [IndexPath(row: (numberAnswers - 1), section: 0)], with: .automatic)
     }
 }

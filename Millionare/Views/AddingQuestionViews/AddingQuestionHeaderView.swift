@@ -16,6 +16,7 @@ class AddingQuestionHeaderView: UITableViewHeaderFooterView {
     // MARK: - Properties
     
     let insets: CGFloat = 8
+    var question: String = ""
     
     // MARK: - Private properties
     
@@ -72,8 +73,21 @@ class AddingQuestionHeaderView: UITableViewHeaderFooterView {
     }
 }
 
+// MARK: - Text Field Delegate
+
 extension AddingQuestionHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text = textField.text,
+           !text.isEmpty {
+            question = text
+        } else {
+            // TODO: - huemue
+            question = ""
+            print("ну типа алерт надо")
+        }
     }
 }

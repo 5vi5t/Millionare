@@ -2,12 +2,9 @@
 //  AddingQuestionViewController+Delegate.swift
 //  Millionare
 //
-//  Created by Константин on 20.12.2022.
+//  Created by Константин on 25.12.2022.
 //
 
 import UIKit
 
-
-extension AddingQuestionViewController: UITableViewDelegate {
-    
-}
+extension AddingQuestionViewController: UITableViewDelegate {}

@@ -26,18 +26,29 @@ final class Game {
         }
     }
     private let resultsCaretaker = ResultsCaretaker()
+    private(set) var userQuestions: [Question] {
+        didSet {
+            userQuestionsCaretaker.save(questions: userQuestions)
+        }
+    }
+    private let userQuestionsCaretaker = UserQuestionsCaretaker()
     
     // MARK: - Construction
     
     private init() {
         self.results = resultsCaretaker.loadResults()
+        self.userQuestions = userQuestionsCaretaker.loadUserQuestions()
     }
     
     // MARK: - Functions
     
-    func save() {
+    func saveResult() {
         if let result = gameSession?.result {
             results.append(result)
         }
+    }
+    
+    func save(question: Question) {
+        userQuestions.append(question)
     }
 }
