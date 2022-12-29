@@ -16,7 +16,7 @@ extension GameViewController: UITableViewDelegate {
         switch cell.correctAnswer {
         case .correct:
             indexQuestion += 1
-            if indexQuestion < Question.questions.count {
+            if indexQuestion < questions.count {
                 tableView.reloadData()
             } else {
                 finishGame()
@@ -39,7 +39,7 @@ extension GameViewController: UITableViewDelegate {
     }
     
     func finishGame() {
-        Game.shared.save()
+        Game.shared.saveResult()
         showAlertWith(questionNumber: questionNumber, result: result)
         delegate?.removeGameSession()
     }

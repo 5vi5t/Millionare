@@ -7,9 +7,27 @@
 
 import Foundation
 
-enum CorrectAnswer {
+enum AnswerType: Int, CaseIterable, CustomStringConvertible, Codable {
     case correct
     case incorrect
+    
+    var description: String {
+        switch self {
+        case .correct:
+            return "Правильный"
+        case .incorrect:
+            return "Неправильный"
+        }
+    }
+    
+    func toggle() -> Self {
+        switch self {
+        case .incorrect:
+            return .correct
+        case .correct:
+            return .incorrect
+        }
+    }
 }
 
 enum Hints: CaseIterable, CustomStringConvertible {
@@ -35,17 +53,17 @@ enum Hints: CaseIterable, CustomStringConvertible {
     }
 }
 
-enum HintType {
+enum HintType: Codable {
     case right, wrong, none
 }
 
-struct Answer {
+struct Answer: Codable {
     let answer: String
-    let correctAnswer: CorrectAnswer
+    let correctAnswer: AnswerType
     var hint: HintType = .none
 }
 
-struct Question {
+struct Question: Codable {
     let question: String
     var answers: [Answer]
     
@@ -102,6 +120,7 @@ struct Question {
                 }
             }
         case .fiftyFifty:
+                //TODO: - нужно добавить рандома
             let incorrectAnswersCount = answers.count / 2
             var counter = 0
             for index in 0 ..< answers.count {

@@ -86,7 +86,7 @@ class GameViewController: UIViewController {
         gameSession?.totalQuestions.addObserver(self, closure: { [weak self] (totalQuestions, _) in
             self?.totalQuestions = totalQuestions
         })
-        questions = orderQuestionsStrategy.setOrder(questions: Question.questions)
+        questions = orderQuestionsStrategy.setOrder(questions: Question.questions + Game.shared.userQuestions)
         setupView()
     }
     

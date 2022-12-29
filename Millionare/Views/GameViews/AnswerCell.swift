@@ -26,7 +26,7 @@ class AnswerCell: UITableViewCell {
         return label
     }()
     
-    private(set) var correctAnswer: CorrectAnswer = .incorrect
+    private(set) var correctAnswer: AnswerType = .incorrect
     private var hint: HintType = .none {
         didSet {
             switch hint {
@@ -53,7 +53,7 @@ class AnswerCell: UITableViewCell {
     
     //MARK: - Functions
     
-    func  configure(answerLabelText text: String, correctAnswer: CorrectAnswer, hint: HintType) {
+    func  configure(answerLabelText text: String, correctAnswer: AnswerType, hint: HintType) {
         answerLabel.text = text
         self.correctAnswer = correctAnswer
         self.hint = hint
@@ -80,5 +80,4 @@ class AnswerCell: UITableViewCell {
         correctAnswer = .incorrect
         hint = .none
     }
-    
 }

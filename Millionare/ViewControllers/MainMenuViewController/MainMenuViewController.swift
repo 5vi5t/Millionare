@@ -55,6 +55,16 @@ class MainMenuViewController: UIViewController {
                          for: .touchUpInside)
         return button
     }()
+    private lazy var addQuestionButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Добавить вопрос", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self,
+                         action: #selector(addQuestionButtonTap),
+                         for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Life cycle
     
@@ -63,9 +73,6 @@ class MainMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupView()
     }
-
-    // MARK: - Functions
-    
     
     // MARK: - Private functions
     
@@ -80,7 +87,7 @@ class MainMenuViewController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        [playButton, resultButton].forEach {
+        [playButton, resultButton, addQuestionButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview($0)
         }
@@ -113,5 +120,10 @@ class MainMenuViewController: UIViewController {
     @objc private func settingsButtonTap() {
         let settingsVC = SettingsViewController()
         self.present(settingsVC, animated: true)
+    }
+    
+    @objc private func addQuestionButtonTap() {
+        let addingQuestionVC = AddingQuestionViewController()
+        self.present(addingQuestionVC, animated: true)
     }
 }
