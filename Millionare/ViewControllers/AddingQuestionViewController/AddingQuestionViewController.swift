@@ -11,8 +11,7 @@ class AddingQuestionViewController: UIViewController {
     
     // MARK: - Properties
     
-    var numberAnswers = 2
-    let mediator = ConcreteMediator()
+    var numberAnswers = 0
     
     // MARK: - Private properties
     
@@ -70,6 +69,7 @@ class AddingQuestionViewController: UIViewController {
     // MARK: - Private functions
     
     private func setupView() {
+        numberAnswers = 2
         view.backgroundColor = .white
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tap)
@@ -89,13 +89,6 @@ class AddingQuestionViewController: UIViewController {
     }
     
     @objc private func addQuestionButtonTap() {
-        /*
-         1. из хедера получить вопрос done
-         2. из ячеек получить ответы done
-         3. проверить наличие вопроса и ответов done
-         4. создать структуру из полученных данных done
-         5. показать юзеру предупреждение в случае отсутствия данных
-         */
         guard let question = (tableView.headerView(forSection: 0) as? AddingQuestionHeaderView)?.question,
               !question.isEmpty else {
             showAlertWith(title: "Нет вопроса!", message: nil)
@@ -105,8 +98,8 @@ class AddingQuestionViewController: UIViewController {
         var isAllowedAddQuestion = false
         for row in 0 ..< numberAnswers {
             if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AddingQuestionAnswerCell,
-               !cell.answer.isEmpty {
-                let answer = Answer(answer: cell.answer, correctAnswer: cell.answerType)
+               !cell.answerText.isEmpty {
+                let answer = Answer(answer: cell.answerText, correctAnswer: cell.answerType)
                 answers.append(answer)
                 isAllowedAddQuestion = true
             } else {
@@ -137,14 +130,5 @@ class AddingQuestionViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
-    }
-}
-
-// MARK: - AddingQuestionFooterView Delegate
-
-extension AddingQuestionViewController: AddingQuestionFooterViewDelegate {
-    func addAnswer() {
-        numberAnswers += 1
-        tableView.insertRows(at: [IndexPath(row: (numberAnswers - 1), section: 0)], with: .automatic)
     }
 }

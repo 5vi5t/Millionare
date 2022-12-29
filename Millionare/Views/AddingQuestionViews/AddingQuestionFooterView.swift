@@ -36,6 +36,7 @@ class AddingQuestionFooterView: UITableViewHeaderFooterView {
                 alpha: 0.5),
             for: .normal)
         button.titleLabel?.shadowOffset = CGSize(width: 0, height: 1)
+        //TODO: - переделать кнопку с конфигурацией этой
         button.reversesTitleShadowWhenHighlighted = true
         button.backgroundColor = .systemGray
         button.layer.cornerRadius = 10

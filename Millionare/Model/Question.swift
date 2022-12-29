@@ -19,6 +19,15 @@ enum AnswerType: Int, CaseIterable, CustomStringConvertible, Codable {
             return "Неправильный"
         }
     }
+    
+    func toggle() -> Self {
+        switch self {
+        case .incorrect:
+            return .correct
+        case .correct:
+            return .incorrect
+        }
+    }
 }
 
 enum Hints: CaseIterable, CustomStringConvertible {

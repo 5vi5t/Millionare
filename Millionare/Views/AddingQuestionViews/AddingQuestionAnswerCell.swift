@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AddingQuestionAnswerCellDelegate: AnyObject {
+    func send(answerType: AnswerType, fromCellWith answerNumber: Int)
+}
+
 class AddingQuestionAnswerCell: UITableViewCell {
     
     // MARK: - Static properties
@@ -16,13 +20,8 @@ class AddingQuestionAnswerCell: UITableViewCell {
     // MARK: - Properties
     
     let insets: CGFloat = 8
-    let id = UUID()
-    var answer = ""
-    var answerType: AnswerType = .incorrect {
-        didSet {
-            mediator?.sendMessage(answerType, by: self)
-        }
-    }
+    var answerText = ""
+    weak var delegate: AddingQuestionAnswerCellDelegate?
     
     // MARK: - Private properties
     
@@ -49,7 +48,7 @@ class AddingQuestionAnswerCell: UITableViewCell {
             items.append(item)
         }
         let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = AnswerType.incorrect.rawValue
+        control.selectedSegmentIndex = answerType.rawValue
         control.addTarget(self, action: #selector(answerTypeControlTap(_:)), for: .valueChanged)
         return control
     }()
@@ -59,7 +58,11 @@ class AddingQuestionAnswerCell: UITableViewCell {
             answerTextField.placeholder = "Сюда писать ответ \(answerNumber)"
         }
     }
-    private(set) weak var mediator: Mediator?
+    private(set) var answerType: AnswerType = .incorrect {
+        didSet {
+            answerTypeControl.selectedSegmentIndex = answerType.rawValue
+        }
+    }
     
     // MARK: - Construction
     
@@ -81,9 +84,8 @@ class AddingQuestionAnswerCell: UITableViewCell {
         }
     }
     
-    func set(mediator: Mediator) {
-        self.mediator = mediator
-        mediator.addColleague(self)
+    func setAnswerType(_ answerType: AnswerType) {
+        self.answerType = answerType
     }
     
     // MARK: - Private functions
@@ -116,23 +118,19 @@ class AddingQuestionAnswerCell: UITableViewCell {
         case AnswerType.correct.rawValue:
             answerType = .correct
         case AnswerType.incorrect.rawValue:
-            if answerNumber == 1 {
-                answerTypeControl.selectedSegmentIndex = AnswerType.correct.rawValue
-                answerType = .correct
-            } else {
-                answerType = .incorrect
-            }
+            answerType = .incorrect
         default:
             answerType = .incorrect
         }
+        delegate?.send(answerType: answerType, fromCellWith: answerNumber)
     }
     
     // MARK: - UITableViewCell
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        mediator = nil
         answerTypeControl.selectedSegmentIndex = AnswerType.incorrect.rawValue
+        answerText = ""
     }
 }
 
@@ -146,26 +144,9 @@ extension AddingQuestionAnswerCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let text = textField.text,
            !text.isEmpty {
-            answer = text
+            answerText = text
         } else {
-            answer = ""
-        }
-    }
-}
-
-// MARK: - Extension Mediator
-
-extension AddingQuestionAnswerCell: Colleague {
-    func colleague(_ colleague: Colleague, didSendMessage message: AnswerType) {
-        switch message {
-        case .correct:
-            answerTypeControl.selectedSegmentIndex = AnswerType.incorrect.rawValue
-        case .incorrect:
-            if answerNumber == 1 {
-                answerTypeControl.selectedSegmentIndex = AnswerType.correct.rawValue
-            } else {
-                answerTypeControl.selectedSegmentIndex = AnswerType.incorrect.rawValue
-            }
+            answerText = ""
         }
     }
 }

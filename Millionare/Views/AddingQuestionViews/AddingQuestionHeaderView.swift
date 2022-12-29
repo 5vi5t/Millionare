@@ -85,9 +85,7 @@ extension AddingQuestionHeaderView: UITextFieldDelegate {
            !text.isEmpty {
             question = text
         } else {
-            // TODO: - huemue
             question = ""
-            print("ну типа алерт надо")
         }
     }
 }

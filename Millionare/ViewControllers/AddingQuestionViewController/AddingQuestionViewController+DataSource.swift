@@ -15,7 +15,7 @@ extension AddingQuestionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddingQuestionAnswerCell.identifier, for: indexPath) as? AddingQuestionAnswerCell else { return UITableViewCell() }
         cell.setAnswerNumber(indexPath.row + 1)
-        cell.set(mediator: mediator)
+        cell.delegate = self
         return cell
     }
     

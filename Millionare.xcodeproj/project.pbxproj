@@ -13,7 +13,6 @@
 		A404B05C29518A39002AEDC3 /* AddingQuestionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05B29518A39002AEDC3 /* AddingQuestionHeaderView.swift */; };
 		A404B05E29518A9D002AEDC3 /* AddingQuestionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05D29518A9D002AEDC3 /* AddingQuestionFooterView.swift */; };
 		A404B06029518ADF002AEDC3 /* AddingQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05F29518ADF002AEDC3 /* AddingQuestionAnswerCell.swift */; };
-		A4105C042954B8E100515F60 /* ConcreteMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4105C032954B8E100515F60 /* ConcreteMediator.swift */; };
 		A45451EB29576F7D00E67971 /* UserQuestionsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45451EA29576F7D00E67971 /* UserQuestionsCaretaker.swift */; };
 		A45451ED295786F500E67971 /* AddingQuestionViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45451EC295786F500E67971 /* AddingQuestionViewController+Delegate.swift */; };
 		A4BF904E2937B6A200EF76CA /* OrderQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF904D2937B6A200EF76CA /* OrderQuestions.swift */; };
@@ -53,7 +52,6 @@
 		A404B05B29518A39002AEDC3 /* AddingQuestionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionHeaderView.swift; sourceTree = "<group>"; };
 		A404B05D29518A9D002AEDC3 /* AddingQuestionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionFooterView.swift; sourceTree = "<group>"; };
 		A404B05F29518ADF002AEDC3 /* AddingQuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionAnswerCell.swift; sourceTree = "<group>"; };
-		A4105C032954B8E100515F60 /* ConcreteMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteMediator.swift; sourceTree = "<group>"; };
 		A45451EA29576F7D00E67971 /* UserQuestionsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestionsCaretaker.swift; sourceTree = "<group>"; };
 		A45451EC295786F500E67971 /* AddingQuestionViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddingQuestionViewController+Delegate.swift"; sourceTree = "<group>"; };
 		A4BF904D2937B6A200EF76CA /* OrderQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderQuestions.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				A4CD37C5292EA4DF00DC289E /* Ext+TableView.swift */,
 				A4CD37D92936414100DC289E /* Game.swift */,
 				A4CD37E92936848500DC289E /* ResultsCaretaker.swift */,
-				A4105C032954B8E100515F60 /* ConcreteMediator.swift */,
 				A45451EA29576F7D00E67971 /* UserQuestionsCaretaker.swift */,
 			);
 			path = Support;
@@ -334,7 +331,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4105C042954B8E100515F60 /* ConcreteMediator.swift in Sources */,
 				A45451EB29576F7D00E67971 /* UserQuestionsCaretaker.swift in Sources */,
 				A4CD37DF29366A4800DC289E /* ResultViewController.swift in Sources */,
 				A4BF904E2937B6A200EF76CA /* OrderQuestions.swift in Sources */,
