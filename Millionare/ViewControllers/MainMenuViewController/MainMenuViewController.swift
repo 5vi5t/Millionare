@@ -123,7 +123,7 @@ class MainMenuViewController: UIViewController {
     }
     
     @objc private func addQuestionButtonTap() {
-        let addingQuestionVC = AddingQuestionViewController()
-        self.present(addingQuestionVC, animated: true)
+        let addingQuestionsVC = AddingQuestionsViewController()
+        self.present(addingQuestionsVC, animated: true)
     }
 }

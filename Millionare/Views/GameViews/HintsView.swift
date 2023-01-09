@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HintsViewDelegate: AnyObject {
-    func use(hint: Hints)
+    func use(hint: Hint)
 }
 
 class HintsView: UITableViewHeaderFooterView {
@@ -77,7 +77,7 @@ class HintsView: UITableViewHeaderFooterView {
             hintsLabelBottomConstraint
         ])
         
-        for hint in Hints.allCases.enumerated() {
+        for hint in Hint.allCases.enumerated() {
             let button = UIButton()
             button.setImage(UIImage(systemName: hint.element.icon), for: .normal)
             button.tag = hint.offset

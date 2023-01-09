@@ -1,5 +1,5 @@
 //
-//  AddingQuestionAnswerCell.swift
+//  AddingQuestionsAnswerCell.swift
 //  Millionare
 //
 //  Created by Константин on 20.12.2022.
@@ -7,21 +7,21 @@
 
 import UIKit
 
-protocol AddingQuestionAnswerCellDelegate: AnyObject {
-    func send(answerType: AnswerType, fromCellWith answerNumber: Int)
+protocol AddingQuestionsAnswerCellDelegate: AnyObject {
+    func setAnswer(type: AnswerType, forAnswerNumber number: Int)
+    func setAnswer(text: String, forAnswerNumber number: Int)
 }
 
-class AddingQuestionAnswerCell: UITableViewCell {
+class AddingQuestionsAnswerCell: UITableViewCell {
     
     // MARK: - Static properties
     
-    static let identifier = String(describing: AddingQuestionAnswerCell.self)
+    static let identifier = String(describing: AddingQuestionsAnswerCell.self)
     
     // MARK: - Properties
     
     let insets: CGFloat = 8
-    var answerText = ""
-    weak var delegate: AddingQuestionAnswerCellDelegate?
+    weak var delegate: AddingQuestionsAnswerCellDelegate?
     
     // MARK: - Private properties
     
@@ -61,6 +61,12 @@ class AddingQuestionAnswerCell: UITableViewCell {
     private(set) var answerType: AnswerType = .incorrect {
         didSet {
             answerTypeControl.selectedSegmentIndex = answerType.rawValue
+            delegate?.setAnswer(type: answerType, forAnswerNumber: answerNumber)
+        }
+    }
+    private var answerText = "" {
+        didSet {
+            delegate?.setAnswer(text: answerText, forAnswerNumber: answerNumber)
         }
     }
     
@@ -79,9 +85,6 @@ class AddingQuestionAnswerCell: UITableViewCell {
     
     func setAnswerNumber(_ number: Int) {
         answerNumber = number
-        if number == 1 {
-            answerTypeControl.selectedSegmentIndex = AnswerType.correct.rawValue
-        }
     }
     
     func setAnswerType(_ answerType: AnswerType) {
@@ -122,7 +125,6 @@ class AddingQuestionAnswerCell: UITableViewCell {
         default:
             answerType = .incorrect
         }
-        delegate?.send(answerType: answerType, fromCellWith: answerNumber)
     }
     
     // MARK: - UITableViewCell
@@ -136,17 +138,14 @@ class AddingQuestionAnswerCell: UITableViewCell {
 
 // MARK: - Text Field Delegate
 
-extension AddingQuestionAnswerCell: UITextFieldDelegate {
+extension AddingQuestionsAnswerCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return endEditing(true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text,
-           !text.isEmpty {
+        if let text = textField.text {
             answerText = text
-        } else {
-            answerText = ""
         }
     }
 }

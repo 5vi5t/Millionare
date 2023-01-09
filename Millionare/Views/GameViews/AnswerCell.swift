@@ -27,9 +27,9 @@ class AnswerCell: UITableViewCell {
     }()
     
     private(set) var correctAnswer: AnswerType = .incorrect
-    private var hint: HintType = .none {
+    private var hintType: HintType = .none {
         didSet {
-            switch hint {
+            switch hintType {
             case .right:
                 answerLabel.backgroundColor = .systemGreen
             case .wrong:
@@ -53,10 +53,10 @@ class AnswerCell: UITableViewCell {
     
     //MARK: - Functions
     
-    func  configure(answerLabelText text: String, correctAnswer: AnswerType, hint: HintType) {
+    func  configure(answerLabelText text: String, answerType: AnswerType, hintType: HintType) {
         answerLabel.text = text
-        self.correctAnswer = correctAnswer
-        self.hint = hint
+        self.correctAnswer = answerType
+        self.hintType = hintType
     }
     
     // MARK: - Private functions
@@ -78,6 +78,6 @@ class AnswerCell: UITableViewCell {
         super.prepareForReuse()
         answerLabel.text = ""
         correctAnswer = .incorrect
-        hint = .none
+        hintType = .none
     }
 }
