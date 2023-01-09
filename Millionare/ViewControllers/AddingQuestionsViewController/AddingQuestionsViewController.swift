@@ -1,5 +1,5 @@
 //
-//  AddingQuestionViewController.swift
+//  AddingQuestionsViewController.swift
 //  Millionare
 //
 //  Created by Константин on 20.12.2022.
@@ -7,11 +7,15 @@
 
 import UIKit
 
-class AddingQuestionViewController: UIViewController {
+class AddingQuestionsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var numberAnswers = 0
+    var numberQuestions = 0
+    let questionsBuilder = QuestionsBuilder()
+    var emptyQuestions: [Int: Bool] = [:]
+    var emptyAnswers: [Int: Bool] = [:]
+    var correctAnswers: [Int: AnswerType] = [:]
     
     // MARK: - Private properties
     
@@ -20,9 +24,8 @@ class AddingQuestionViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
-        tableView.register(AddingQuestionAnswerCell.self, forCellReuseIdentifier: AddingQuestionAnswerCell.identifier)
-        tableView.register(AddingQuestionHeaderView.self, forHeaderFooterViewReuseIdentifier: AddingQuestionHeaderView.identifier)
-        tableView.register(AddingQuestionFooterView.self, forHeaderFooterViewReuseIdentifier: AddingQuestionFooterView.identifier)
+        tableView.register(AddingQuestionsCell.self, forCellReuseIdentifier: AddingQuestionsCell.identifier)
+        tableView.register(AddingQuestionsFooterView.self, forHeaderFooterViewReuseIdentifier: AddingQuestionsFooterView.identifier)
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
         return tableView
@@ -31,16 +34,16 @@ class AddingQuestionViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.text = "Добавить вопрос"
+        label.text = "Добавить вопросы"
         return label
     }()
     private lazy var footerView: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Добавить вопрос", for: .normal)
+        button.setTitle("Добавить вопросы", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.addTarget(self,
-                         action: #selector(addQuestionButtonTap),
+                         action: #selector(addQuestionsButtonTap),
                          for: .touchUpInside)
         return button
     }()
@@ -50,7 +53,6 @@ class AddingQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -66,10 +68,36 @@ class AddingQuestionViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    // MARK: - Functions
+    
+    func showAlertWith(title: String?, message: String?) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alert.title = title
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+    
+    func checkQuestion() -> Bool {
+        if emptyQuestions.contains(where: { $1 }) {
+            showAlertWith(title: "Вопрос не заполнен!", message: nil)
+            return false
+        } else if emptyAnswers.contains(where: { $1 }) {
+            showAlertWith(title: "Ответы не заполнены!", message: nil)
+            return false
+        } else if !correctAnswers.contains(where: { $1 == .correct }) {
+            showAlertWith(title: "Не выбран правильный ответ!", message: nil)
+            return false
+        } else {
+            return true
+        }
+    }
+    
     // MARK: - Private functions
     
     private func setupView() {
-        numberAnswers = 2
+        numberQuestions = 1
+        questionsBuilder.addQuestion()
         view.backgroundColor = .white
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tap)
@@ -82,36 +110,17 @@ class AddingQuestionViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        heightChanged()
     }
     
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }
     
-    @objc private func addQuestionButtonTap() {
-        guard let question = (tableView.headerView(forSection: 0) as? AddingQuestionHeaderView)?.question,
-              !question.isEmpty else {
-            showAlertWith(title: "Нет вопроса!", message: nil)
-            return
-        }
-        var answers: [Answer] = []
-        var isAllowedAddQuestion = false
-        for row in 0 ..< numberAnswers {
-            if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AddingQuestionAnswerCell,
-               !cell.answerText.isEmpty {
-                let answer = Answer(answer: cell.answerText, correctAnswer: cell.answerType)
-                answers.append(answer)
-                isAllowedAddQuestion = true
-            } else {
-                showAlertWith(title: "Нет ответа \(row + 1)!", message: nil)
-                isAllowedAddQuestion = false
-                break
-            }
-        }
-        if isAllowedAddQuestion {
-            let newQuestion = Question(question: question, answers: answers)
-            Game.shared.save(question: newQuestion)
-            dismiss(animated: true)
+    @objc private func addQuestionsButtonTap() {
+        if checkQuestion() {
+            Game.shared.save(questions: questionsBuilder.build())
+            self.dismiss(animated: true)
         }
     }
     
@@ -122,13 +131,5 @@ class AddingQuestionViewController: UIViewController {
     
     @objc private func keyboardWillHide() {
         tableView.contentInset = .zero
-    }
-    
-    func showAlertWith(title: String?, message: String?) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alert.title = title
-        let action = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(action)
-        present(alert, animated: true)
     }
 }

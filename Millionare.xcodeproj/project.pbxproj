@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		A404B0532950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B0522950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift */; };
-		A404B05629518663002AEDC3 /* AddingQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05529518663002AEDC3 /* AddingQuestionViewController.swift */; };
+		A404B05629518663002AEDC3 /* AddingQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05529518663002AEDC3 /* AddingQuestionsViewController.swift */; };
 		A404B058295188FC002AEDC3 /* AddingQuestionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B057295188FC002AEDC3 /* AddingQuestionViewController+DataSource.swift */; };
-		A404B05C29518A39002AEDC3 /* AddingQuestionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05B29518A39002AEDC3 /* AddingQuestionHeaderView.swift */; };
-		A404B05E29518A9D002AEDC3 /* AddingQuestionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05D29518A9D002AEDC3 /* AddingQuestionFooterView.swift */; };
-		A404B06029518ADF002AEDC3 /* AddingQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05F29518ADF002AEDC3 /* AddingQuestionAnswerCell.swift */; };
+		A404B05C29518A39002AEDC3 /* AddingQuestionsAnswerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05B29518A39002AEDC3 /* AddingQuestionsAnswerHeaderView.swift */; };
+		A404B05E29518A9D002AEDC3 /* AddingQuestionsAnswerFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05D29518A9D002AEDC3 /* AddingQuestionsAnswerFooterView.swift */; };
+		A404B06029518ADF002AEDC3 /* AddingQuestionsAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A404B05F29518ADF002AEDC3 /* AddingQuestionsAnswerCell.swift */; };
 		A45451EB29576F7D00E67971 /* UserQuestionsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45451EA29576F7D00E67971 /* UserQuestionsCaretaker.swift */; };
 		A45451ED295786F500E67971 /* AddingQuestionViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45451EC295786F500E67971 /* AddingQuestionViewController+Delegate.swift */; };
+		A4AC1EE62961FA6F004DA237 /* AddingQuestionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC1EE52961FA6F004DA237 /* AddingQuestionsCell.swift */; };
+		A4AC1EE82961FC87004DA237 /* AddingQuestionsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC1EE72961FC87004DA237 /* AddingQuestionsFooterView.swift */; };
+		A4AC1EEB29631A00004DA237 /* NestedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC1EEA29631A00004DA237 /* NestedTableView.swift */; };
+		A4AC1EED2965D190004DA237 /* QuestionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC1EEC2965D190004DA237 /* QuestionsBuilder.swift */; };
 		A4BF904E2937B6A200EF76CA /* OrderQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF904D2937B6A200EF76CA /* OrderQuestions.swift */; };
 		A4C456602938A09000295A09 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C4565F2938A09000295A09 /* SettingsViewController.swift */; };
 		A4C456622938A15600295A09 /* SettingsOrderQuestionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C456612938A15600295A09 /* SettingsOrderQuestionsCell.swift */; };
@@ -47,13 +51,17 @@
 
 /* Begin PBXFileReference section */
 		A404B0522950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+HintsViewDelegate.swift"; sourceTree = "<group>"; };
-		A404B05529518663002AEDC3 /* AddingQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionViewController.swift; sourceTree = "<group>"; };
+		A404B05529518663002AEDC3 /* AddingQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionsViewController.swift; sourceTree = "<group>"; };
 		A404B057295188FC002AEDC3 /* AddingQuestionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddingQuestionViewController+DataSource.swift"; sourceTree = "<group>"; };
-		A404B05B29518A39002AEDC3 /* AddingQuestionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionHeaderView.swift; sourceTree = "<group>"; };
-		A404B05D29518A9D002AEDC3 /* AddingQuestionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionFooterView.swift; sourceTree = "<group>"; };
-		A404B05F29518ADF002AEDC3 /* AddingQuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionAnswerCell.swift; sourceTree = "<group>"; };
+		A404B05B29518A39002AEDC3 /* AddingQuestionsAnswerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionsAnswerHeaderView.swift; sourceTree = "<group>"; };
+		A404B05D29518A9D002AEDC3 /* AddingQuestionsAnswerFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionsAnswerFooterView.swift; sourceTree = "<group>"; };
+		A404B05F29518ADF002AEDC3 /* AddingQuestionsAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionsAnswerCell.swift; sourceTree = "<group>"; };
 		A45451EA29576F7D00E67971 /* UserQuestionsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestionsCaretaker.swift; sourceTree = "<group>"; };
 		A45451EC295786F500E67971 /* AddingQuestionViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddingQuestionViewController+Delegate.swift"; sourceTree = "<group>"; };
+		A4AC1EE52961FA6F004DA237 /* AddingQuestionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionsCell.swift; sourceTree = "<group>"; };
+		A4AC1EE72961FC87004DA237 /* AddingQuestionsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingQuestionsFooterView.swift; sourceTree = "<group>"; };
+		A4AC1EEA29631A00004DA237 /* NestedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedTableView.swift; sourceTree = "<group>"; };
+		A4AC1EEC2965D190004DA237 /* QuestionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsBuilder.swift; sourceTree = "<group>"; };
 		A4BF904D2937B6A200EF76CA /* OrderQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderQuestions.swift; sourceTree = "<group>"; };
 		A4C4565F2938A09000295A09 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A4C456612938A15600295A09 /* SettingsOrderQuestionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOrderQuestionsCell.swift; sourceTree = "<group>"; };
@@ -97,22 +105,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A404B05429518630002AEDC3 /* AddingQuestionViewController */ = {
+		A404B05429518630002AEDC3 /* AddingQuestionsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A404B05529518663002AEDC3 /* AddingQuestionViewController.swift */,
+				A404B05529518663002AEDC3 /* AddingQuestionsViewController.swift */,
 				A404B057295188FC002AEDC3 /* AddingQuestionViewController+DataSource.swift */,
 				A45451EC295786F500E67971 /* AddingQuestionViewController+Delegate.swift */,
 			);
-			path = AddingQuestionViewController;
+			path = AddingQuestionsViewController;
 			sourceTree = "<group>";
 		};
 		A404B06129518B1F002AEDC3 /* AddingQuestionViews */ = {
 			isa = PBXGroup;
 			children = (
-				A404B05B29518A39002AEDC3 /* AddingQuestionHeaderView.swift */,
-				A404B05D29518A9D002AEDC3 /* AddingQuestionFooterView.swift */,
-				A404B05F29518ADF002AEDC3 /* AddingQuestionAnswerCell.swift */,
+				A4AC1EE92961FCB8004DA237 /* AnswerViews */,
+				A4AC1EE52961FA6F004DA237 /* AddingQuestionsCell.swift */,
+				A4AC1EE72961FC87004DA237 /* AddingQuestionsFooterView.swift */,
 			);
 			path = AddingQuestionViews;
 			sourceTree = "<group>";
@@ -125,6 +133,17 @@
 				A4FE8781293A0FDE006AA496 /* HintsView.swift */,
 			);
 			path = GameViews;
+			sourceTree = "<group>";
+		};
+		A4AC1EE92961FCB8004DA237 /* AnswerViews */ = {
+			isa = PBXGroup;
+			children = (
+				A404B05B29518A39002AEDC3 /* AddingQuestionsAnswerHeaderView.swift */,
+				A404B05F29518ADF002AEDC3 /* AddingQuestionsAnswerCell.swift */,
+				A404B05D29518A9D002AEDC3 /* AddingQuestionsAnswerFooterView.swift */,
+				A4AC1EEA29631A00004DA237 /* NestedTableView.swift */,
+			);
+			path = AnswerViews;
 			sourceTree = "<group>";
 		};
 		A4C456652938C37800295A09 /* SettingsViewController */ = {
@@ -182,7 +201,7 @@
 		A4CD37BC292E37D700DC289E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A404B05429518630002AEDC3 /* AddingQuestionViewController */,
+				A404B05429518630002AEDC3 /* AddingQuestionsViewController */,
 				A4CD37BD292E37E300DC289E /* MainMenuViewController */,
 				A4CD37BE292E37FB00DC289E /* GameViewController */,
 				A4CD37DD293669F900DC289E /* ResultViewController */,
@@ -248,6 +267,7 @@
 				A4CD37D92936414100DC289E /* Game.swift */,
 				A4CD37E92936848500DC289E /* ResultsCaretaker.swift */,
 				A45451EA29576F7D00E67971 /* UserQuestionsCaretaker.swift */,
+				A4AC1EEC2965D190004DA237 /* QuestionsBuilder.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -332,17 +352,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				A45451EB29576F7D00E67971 /* UserQuestionsCaretaker.swift in Sources */,
+				A4AC1EE62961FA6F004DA237 /* AddingQuestionsCell.swift in Sources */,
+				A4AC1EE82961FC87004DA237 /* AddingQuestionsFooterView.swift in Sources */,
 				A4CD37DF29366A4800DC289E /* ResultViewController.swift in Sources */,
 				A4BF904E2937B6A200EF76CA /* OrderQuestions.swift in Sources */,
-				A404B05E29518A9D002AEDC3 /* AddingQuestionFooterView.swift in Sources */,
+				A404B05E29518A9D002AEDC3 /* AddingQuestionsAnswerFooterView.swift in Sources */,
 				A404B0532950DF56002AEDC3 /* GameViewController+HintsViewDelegate.swift in Sources */,
-				A404B06029518ADF002AEDC3 /* AddingQuestionAnswerCell.swift in Sources */,
+				A404B06029518ADF002AEDC3 /* AddingQuestionsAnswerCell.swift in Sources */,
 				A4CD37BB292E373700DC289E /* GameViewController.swift in Sources */,
 				A4CD37A9292D626D00DC289E /* MainMenuViewController.swift in Sources */,
 				A4C4566829393A4400295A09 /* OrderQuestionsStrategy.swift in Sources */,
 				A4CD37A5292D626D00DC289E /* AppDelegate.swift in Sources */,
 				A4CD37CE292FA95F00DC289E /* GameViewController+Delegate.swift in Sources */,
+				A4AC1EEB29631A00004DA237 /* NestedTableView.swift in Sources */,
 				A4CD37EA2936848500DC289E /* ResultsCaretaker.swift in Sources */,
+				A4AC1EED2965D190004DA237 /* QuestionsBuilder.swift in Sources */,
 				A4CD37CA292EC5C900DC289E /* Question.swift in Sources */,
 				A45451ED295786F500E67971 /* AddingQuestionViewController+Delegate.swift in Sources */,
 				A4C4566A29393AE000295A09 /* SerialOrderQuestionsStrategy.swift in Sources */,
@@ -351,7 +375,7 @@
 				A4CD37DA2936414100DC289E /* Game.swift in Sources */,
 				A4CD37A7292D626D00DC289E /* SceneDelegate.swift in Sources */,
 				A4CD37C6292EA4DF00DC289E /* Ext+TableView.swift in Sources */,
-				A404B05C29518A39002AEDC3 /* AddingQuestionHeaderView.swift in Sources */,
+				A404B05C29518A39002AEDC3 /* AddingQuestionsAnswerHeaderView.swift in Sources */,
 				A4C456642938C35F00295A09 /* SettingsViewController+DataSource.swift in Sources */,
 				A4FE8780293A0E8C006AA496 /* Observable.swift in Sources */,
 				A4FE8782293A0FDE006AA496 /* HintsView.swift in Sources */,
@@ -363,7 +387,7 @@
 				A4CD37E429366B3400DC289E /* ResultCell.swift in Sources */,
 				A4CD37C2292E4A2A00DC289E /* GameViewController+DataSource.swift in Sources */,
 				A4C456602938A09000295A09 /* SettingsViewController.swift in Sources */,
-				A404B05629518663002AEDC3 /* AddingQuestionViewController.swift in Sources */,
+				A404B05629518663002AEDC3 /* AddingQuestionsViewController.swift in Sources */,
 				A404B058295188FC002AEDC3 /* AddingQuestionViewController+DataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

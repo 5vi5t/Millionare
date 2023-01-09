@@ -8,7 +8,7 @@
 import UIKit
 
 extension GameViewController: HintsViewDelegate {
-    func use(hint: Hints) {
+    func use(hint: Hint) {
         var question = questions[indexQuestion]
         question.use(hint: hint)
         questions[indexQuestion] = question

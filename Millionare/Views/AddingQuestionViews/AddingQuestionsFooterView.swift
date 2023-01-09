@@ -1,32 +1,32 @@
 //
-//  AddingQuestionFooterView.swift
+//  AddingQuestionsFooterView.swift
 //  Millionare
 //
-//  Created by Константин on 20.12.2022.
+//  Created by Константин on 01.01.2023.
 //
 
 import UIKit
 
-protocol AddingQuestionFooterViewDelegate: AnyObject {
-    func addAnswer()
+protocol AddingQuestionsFooterViewDelegate: AnyObject {
+    func addQuestion()
 }
 
-class AddingQuestionFooterView: UITableViewHeaderFooterView {
+class AddingQuestionsFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Static properties
     
-    static let identifier = String(describing: AddingQuestionFooterView.self)
+    static let identifier = String(describing: AddingQuestionsFooterView.self)
     
     // MARK: - Properties
     
     let insets: CGFloat = 8
-    weak var delegate: AddingQuestionFooterViewDelegate?
+    weak var delegate: AddingQuestionsFooterViewDelegate?
     
     // MARK: - Private properties
     
     private lazy var addAnswerButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Добавить ответ", for: .normal)
+        button.setTitle("Добавить вопрос", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.setTitleShadowColor(
             .init(
@@ -41,7 +41,7 @@ class AddingQuestionFooterView: UITableViewHeaderFooterView {
         button.backgroundColor = .systemGray
         button.layer.cornerRadius = 10
         button.addTarget(self,
-                         action: #selector(addAnswerButtonTap),
+                         action: #selector(addQuestionButtonTap),
                          for: .touchUpInside)
         return button
     }()
@@ -57,23 +57,21 @@ class AddingQuestionFooterView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Functions
-    
     // MARK: - Private functions
     
     private func setupView() {
         addAnswerButton.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(addAnswerButton)
+        contentView.addSubview(addAnswerButton)
         
         NSLayoutConstraint.activate([
-            addAnswerButton.topAnchor.constraint(equalTo: topAnchor, constant: insets),
-            addAnswerButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets),
-            addAnswerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets),
-            addAnswerButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -insets)
+            addAnswerButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
+            addAnswerButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets),
+            addAnswerButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets),
+            addAnswerButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets)
         ])
     }
     
-    @objc private func addAnswerButtonTap() {
-        delegate?.addAnswer()
+    @objc private func addQuestionButtonTap() {
+        delegate?.addQuestion()
     }
 }

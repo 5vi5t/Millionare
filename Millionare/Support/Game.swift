@@ -48,7 +48,7 @@ final class Game {
         }
     }
     
-    func save(question: Question) {
-        userQuestions.append(question)
+    func save(questions: [Question]) {
+        userQuestions.append(contentsOf: questions)
     }
 }

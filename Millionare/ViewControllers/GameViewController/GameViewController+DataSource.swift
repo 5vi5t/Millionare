@@ -18,13 +18,13 @@ extension GameViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerCell.identifier, for: indexPath) as? AnswerCell else { return UITableViewCell() }
         let answer = questions[indexQuestion].answers[indexPath.row]
-        cell.configure(answerLabelText: answer.answer, correctAnswer: answer.correctAnswer, hint: answer.hint)
+        cell.configure(answerLabelText: answer.text, answerType: answer.type, hintType: answer.hintType)
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: QuestionView.identifier) as? QuestionView else { return nil }
-        header.setQuestionLabel(text: questions[indexQuestion].question)
+        header.setQuestionLabel(text: questions[indexQuestion].text)
         return header
     }
     
