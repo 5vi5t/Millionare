@@ -9,9 +9,18 @@ import UIKit
 
 extension GameViewController: HintsViewDelegate {
     func use(hint: Hint) {
-        var question = questions[indexQuestion]
-        question.use(hint: hint)
-        questions[indexQuestion] = question
-        tableView.reloadData()
+        gameSession?.hintUsageFacade.currentQuestion = questions[indexQuestion]
+        switch hint {
+        case .callFriend:
+            gameSession?.hintUsageFacade.callFriend()
+        case .hallHelp:
+            gameSession?.hintUsageFacade.useAuditoryHelp()
+        case .fiftyFifty:
+            gameSession?.hintUsageFacade.use50To50Hint()
+        }
+        if let question = gameSession?.hintUsageFacade.currentQuestion {
+            questions[indexQuestion] = question
+            tableView.reloadData()
+        }
     }
 }

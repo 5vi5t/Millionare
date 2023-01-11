@@ -22,4 +22,5 @@ class GameSession {
     var hintCallFriend = true
     var hintHallHelp = true
     
+    let hintUsageFacade = HintUsageFacade()
 }
