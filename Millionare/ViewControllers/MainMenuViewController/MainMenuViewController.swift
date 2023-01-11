@@ -11,7 +11,11 @@ class MainMenuViewController: UIViewController {
 
     // MARK: - Properties
     
-    var gameSession: GameSession?
+    var gameSession: GameSession? {
+        didSet {
+            Game.shared.gameSession = gameSession
+        }
+    }
     
     // MARK: - Private properties
     
@@ -42,6 +46,25 @@ class MainMenuViewController: UIViewController {
                          for: .touchUpInside)
         return button
     }()
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "wrench.and.screwdriver"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self,
+                         action: #selector(settingsButtonTap),
+                         for: .touchUpInside)
+        return button
+    }()
+    private lazy var addQuestionButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Добавить вопрос", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self,
+                         action: #selector(addQuestionButtonTap),
+                         for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Life cycle
     
@@ -50,9 +73,6 @@ class MainMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupView()
     }
-
-    // MARK: - Functions
-    
     
     // MARK: - Private functions
     
@@ -67,17 +87,27 @@ class MainMenuViewController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        [playButton, resultButton].forEach {
+        [playButton, resultButton, addQuestionButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview($0)
         }
+        
+        view.addSubview(settingsButton)
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            settingsButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
+            settingsButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+            settingsButton.heightAnchor.constraint(equalToConstant: 50),
+            settingsButton.widthAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
     @objc private func playButtonTap() {
         let gameVC = GameViewController()
         gameSession = GameSession()
-        Game.shared.gameSession = gameSession
         gameVC.delegate = self
+        gameVC.gameSession = gameSession
         gameVC.modalPresentationStyle = .fullScreen
         self.present(gameVC, animated: true)
     }
@@ -86,13 +116,14 @@ class MainMenuViewController: UIViewController {
         let resultVC = ResultViewController()
         self.present(resultVC, animated: true)
     }
-}
-
-    // MARK: - GameViewControllerDelegate
-
-extension MainMenuViewController: GameViewControllerDelegate {
-    func save(result: Int) {
-        gameSession?.correctAnswers = result
+    
+    @objc private func settingsButtonTap() {
+        let settingsVC = SettingsViewController()
+        self.present(settingsVC, animated: true)
+    }
+    
+    @objc private func addQuestionButtonTap() {
+        let addingQuestionsVC = AddingQuestionsViewController()
+        self.present(addingQuestionsVC, animated: true)
     }
 }
-

@@ -12,20 +12,27 @@ extension GameViewController: UITableViewDataSource {
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Question.questions[indexQuestion].answers.count
+        return questions[indexQuestion].answers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerCell.identifier, for: indexPath) as? AnswerCell else { return UITableViewCell() }
-        let question = Question.questions[indexQuestion]
-        cell.setAnswerLabel(text: question.answers[indexPath.row].answer)
-        cell.setCorrectAnswer(isCorrect: question.answers[indexPath.row].isCorrect)
+        let answer = questions[indexQuestion].answers[indexPath.row]
+        cell.configure(answerLabelText: answer.text, answerType: answer.type, hintType: answer.hintType)
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: QuestionView.identifier) as? QuestionView else { return nil }
-        header.setQuestionLabel(text: Question.questions[indexQuestion].question)
+        header.setQuestionLabel(text: questions[indexQuestion].text)
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: HintsView.identifier) as? HintsView else { return nil }
+        let text = "Текущий вопрос \(questionNumber), процент ответов \(result)"
+        footer.configure(hintsLabelText: text)
+        footer.delegate = self
+        return footer
     }
 }

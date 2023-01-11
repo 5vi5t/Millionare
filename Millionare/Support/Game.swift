@@ -16,35 +16,39 @@ final class Game {
     // MARK: - Properties
     
     var gameSession: GameSession?
+    var orderQuestions: OrderQuestions = .serial
     
     // MARK: - Private properties
     
-    private var result: String {
-        guard let correctAnswers = gameSession?.correctAnswers,
-              let totalQuestions = gameSession?.totalQuestions
-        else {
-            return ""
-        }
-        return "\(correctAnswers * 100 / totalQuestions)%"
-    }
     private(set) var results: [String] {
         didSet {
-            resultsCaretaker.save(results: self.results)
+            resultsCaretaker.save(results: results)
         }
     }
     private let resultsCaretaker = ResultsCaretaker()
+    private(set) var userQuestions: [Question] {
+        didSet {
+            userQuestionsCaretaker.save(questions: userQuestions)
+        }
+    }
+    private let userQuestionsCaretaker = UserQuestionsCaretaker()
     
     // MARK: - Construction
     
     private init() {
         self.results = resultsCaretaker.loadResults()
+        self.userQuestions = userQuestionsCaretaker.loadUserQuestions()
     }
     
     // MARK: - Functions
     
-    func save() {
-        results.append(result)
-        gameSession = nil
+    func saveResult() {
+        if let result = gameSession?.result {
+            results.append(result)
+        }
     }
     
+    func save(questions: [Question]) {
+        userQuestions.append(contentsOf: questions)
+    }
 }

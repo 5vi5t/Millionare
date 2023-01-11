@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITableView {
-    func sizeHeaderToFit(insets: CGFloat) {
+    func sizeHeaderToFit(insets: CGFloat = 0) {
         guard let headerView = tableHeaderView else { return }
         
         let newHeight = headerView.systemLayoutSizeFitting(CGSize(width: frame.width, height: .greatestFiniteMagnitude), withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow)
@@ -22,7 +22,7 @@ extension UITableView {
         }
     }
     
-    func sizeFooterToFit() {
+    func sizeFooterToFit(insets: CGFloat = 0) {
         guard let footerView = tableFooterView else { return }
         
         let newHeight = footerView.systemLayoutSizeFitting(CGSize(width: frame.width, height: .greatestFiniteMagnitude), withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow)
@@ -30,7 +30,7 @@ extension UITableView {
         
         // avoids infinite loop!
         if newHeight.height != frame.height {
-            frame.size.height = newHeight.height
+            frame.size.height = newHeight.height + insets
             footerView.frame = frame
             tableFooterView = footerView
         }

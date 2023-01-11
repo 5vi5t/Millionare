@@ -13,26 +13,34 @@ extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? AnswerCell else { return }
-        if cell.correctAnswer,
-           indexQuestion < Question.questions.count - 1 {
+        switch cell.correctAnswer {
+        case .correct:
             indexQuestion += 1
-            tableView.reloadData()
-        } else {
-            delegate?.save(result: indexQuestion)
-            Game.shared.save()
-            showResult(result: indexQuestion)
+            if indexQuestion < questions.count {
+                tableView.reloadData()
+            } else {
+                finishGame()
+            }
+        case .incorrect:
+            finishGame()
         }
     }
     
     // MARK: - Functions
     
-    func showResult(result: Int) {
+    func showAlertWith(questionNumber: Int, result: String) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alert.title = "Отвечено на \(result) вопросов"
+        alert.title = "Всего \(questionNumber) вопросов, \(result) правильных ответов"
         let action = UIAlertAction(title: "Вернутся на главную", style: .default) { [weak self] _ in
             self?.dismiss(animated: true) {}
         }
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    func finishGame() {
+        Game.shared.saveResult()
+        showAlertWith(questionNumber: questionNumber, result: result)
+        delegate?.removeGameSession()
     }
 }

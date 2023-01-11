@@ -1,36 +1,38 @@
 //
-//  ResultViewController.swift
+//  SettingsViewController.swift
 //  Millionare
 //
-//  Created by Константин on 29.11.2022.
+//  Created by Константин on 01.12.2022.
 //
 
 import UIKit
 
-class ResultViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
-    // MARK: - Private properties
+    // MARK: - Private Properties
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.dataSource = self
-        tableView.register(ResultCell.self, forCellReuseIdentifier: ResultCell.identifier)
         tableView.backgroundColor = .white
+        tableView.dataSource = self
+        tableView.register(SettingsOrderQuestionsCell.self, forCellReuseIdentifier: SettingsOrderQuestionsCell.identifier)
         tableView.tableHeaderView = headerView
+        tableView.backgroundColor = .white
         return tableView
     }()
     private lazy var headerView: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.text = "Результаты"
+        label.text = "Настройки"
         return label
     }()
     
-    // MARK: - Life cycle
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
     }
     
